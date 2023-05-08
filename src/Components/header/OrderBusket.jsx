@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import busket from "../../Image/Icons/Vector.svg";
 import styled from "styled-components";
+import { AppProvider } from "../store/Context";
 
-export const OrderBusket = ({ children,onClick }) => {
+export const OrderBusket = ({ children, onClick }) => {
+  const { clickCss, quantity } = useContext(AppProvider);
+
   return (
-    <BtnCartHeader onClick={onClick}>
+    <BtnCartHeader
+      className={clickCss}
+      onClick={onClick}
+    >
       <img src={busket} />
-      <OrderBusketTitle >{children}</OrderBusketTitle>
-      <OrderBusketCount>12</OrderBusketCount>
+      <OrderBusketTitle>{children}</OrderBusketTitle>
+      <OrderBusketCount>{quantity}</OrderBusketCount>
     </BtnCartHeader>
   );
 };
@@ -25,6 +31,26 @@ const BtnCartHeader = styled.button`
   &:hover {
     background-color: #4d1601;
   }
+  &.move  {
+  animation: bump 300ms ease-out;
+}
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 `;
 const OrderBusketTitle = styled.span`
   font-weight: 600;
@@ -37,5 +63,5 @@ const OrderBusketCount = styled.span`
   padding: 4px 20px;
   color: #fff;
   font-weight: 700;
-font-size: 20px;
+  font-size: 20px;
 `;

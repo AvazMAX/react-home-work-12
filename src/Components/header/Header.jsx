@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import React, { useContext } from "react";
 import { OrderBusket } from "./OrderBusket";
-import { AppProvider } from "../Context/Context";
+import { AppProvider } from "../store/Context";
 
 export const Header = () => {
-  const {openBasket} = useContext(AppProvider)
+  const { setOpen } = useContext(AppProvider);
+
   return (
     <Container>
       <h1>React Meals</h1>
-      <OrderBusket onClick={openBasket}>Your Cart</OrderBusket>
+      <OrderBusket onClick={() => setOpen(true)}>Your Cart</OrderBusket>
     </Container>
   );
 };
@@ -21,5 +22,5 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   color: #fff;
+  position: fixed;
 `;
-

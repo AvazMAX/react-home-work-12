@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { AppProvider } from "../Components/Context/Context";
+import { AppProvider } from "../Components/store/Context";
 import styled from "styled-components";
 import { Button } from "../Components/Ui/Button";
 
 export const NewFoodsModal = () => {
   const { newFoods, closeModal } = useContext(AppProvider);
+  console.log(newFoods);
   return (
     <DovBackdrop>
       <DivNewFoodsMap>
